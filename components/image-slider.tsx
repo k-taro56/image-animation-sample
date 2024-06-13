@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-export function ImageSlider({ images }: { images: string[] }) {
+export function ImageSlider({ images, interval = 1000 }: { images: string[], interval?: number }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 100);
+    }, interval);
 
     return () => clearInterval(timer);
-  }, [images.length]);
+  }, [images.length, interval]);
 
   return (
     <div
